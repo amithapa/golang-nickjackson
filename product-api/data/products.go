@@ -97,6 +97,28 @@ func getNextID() int {
 	return (lp.ID + 1)
 }
 
+func DeleteProduct(id int) error {
+	i := findIndexByProductID(id)
+	if i == -1 {
+		return ErrProductNotFound
+	}
+
+	productList = append(productList[:i], productList[i+1])
+
+	return nil
+}
+
+// findIndex finds the index of  a product in the database
+// returns -1 when no product can be found
+func findIndexByProductID(id int) int {
+	for i, p := range productList {
+		if p.ID == id {
+			return i
+		}
+	}
+	return -1
+}
+
 // productList is a hard coded list of products for this
 // example data source
 var productList = []*Product{
