@@ -6,22 +6,34 @@ definitions:
     description: Product defines the structure for an API product
     properties:
       description:
+        description: the description of the product
         type: string
         x-go-name: Description
       id:
+        description: the id for the product
         format: int64
+        minimum: 1
         type: integer
         x-go-name: ID
       name:
+        description: the name of the product
         type: string
         x-go-name: Name
       price:
+        description: the price of the product
         format: float
         type: number
         x-go-name: Price
       sku:
+        description: the SKU of the product
+        example: abcd-kmdfg-ercg
         type: string
         x-go-name: SKU
+    required:
+    - id
+    - name
+    - price
+    - sku
     type: object
     x-go-package: _/home/amit/personal_data/workspace/golang-nickjackson/product-api/data
   Products:

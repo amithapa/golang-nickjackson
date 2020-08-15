@@ -11,15 +11,37 @@ import (
 )
 
 // Product defines the structure for an API product
+// swagger:model
 type Product struct {
-	ID          int     `json:"id"`
-	Name        string  `json:"name" validate:"required"`
-	Description string  `json:"description"`
-	Price       float32 `json:"price" validate:"gt=0"`
-	SKU         string  `json:"sku" validate:"required,sku"`
-	CreatedOn   string  `json:"-"`
-	UpdatedOn   string  `json:"-"`
-	DeletedOn   string  `json:"-"`
+	// the id for the product
+	//
+	// required: true
+	// min: 1
+	ID int `json:"id"`
+
+	// the name of the product
+	//
+	// required: true
+	Name string `json:"name" validate:"required"`
+
+	// the description of the product
+	//
+	// required: false
+	Description string `json:"description"`
+
+	// the price of the product
+	//
+	// required: true
+	Price float32 `json:"price" validate:"gt=0"`
+
+	// the SKU of the product
+	//
+	// required: true
+	// example: abcd-kmdfg-ercg
+	SKU       string `json:"sku" validate:"required,sku"`
+	CreatedOn string `json:"-"`
+	UpdatedOn string `json:"-"`
+	DeletedOn string `json:"-"`
 }
 
 func (p *Product) FromJSON(r io.Reader) error {
